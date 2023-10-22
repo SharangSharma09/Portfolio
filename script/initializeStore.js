@@ -4,8 +4,10 @@ import { CharacterTextSplitter } from "langchain/text_splitter";
 import { HNSWLib } from "langchain/vectorstores";
 import { OpenAIEmbeddings } from 'langchain/embeddings';
 
+
+
 const data = [];
-const files = await new Promise((resolve, reject) => 
+const files = await new Promise((resolve, reject) =>
   glob("training/**/*.md", (err, files) => err ? reject(err) : resolve(files))
 );
 

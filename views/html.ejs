@@ -1,0 +1,48 @@
+<html>
+  <head>
+      <title>Miko Chat Bot</title>
+      <style>
+          .container {
+            margin: auto;
+            width: 50%;
+              
+          }
+          .queryBox.queryfield {
+              width: 50%;
+              float: left;
+      
+          .queryBox{
+            overflow: hidden; 
+            padding-right: .5em;
+           }
+          .submit-name {
+              clear: both;
+          }
+      </style>
+  </head>
+<body>
+  
+
+  <form method='GET' action="/getquestion">
+      <div class="container">
+          <div>
+          <h1>Miko Chat bot</h1>
+          </div>
+          <div class="answerBox">
+              <p>Miko: <%=miko_output%></p>
+          </div>
+        
+          <div class="queryBox">
+              <label>You: </label>
+              <input type="text" id="queryfield" name="question" />
+              <input type="submit" id="submitButton" value="Send" />
+          </div>
+        
+      </div>
+
+
+    
+      </div>
+  </form>
+</body>
+</html>

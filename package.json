@@ -1,7 +1,7 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a LangChain LLM template that allows you to train your own custom AI model on any data you want.",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -12,13 +12,29 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@steamship/client": "^3.3.3",
     "@types/node": "^18.0.6",
-    "glob": "^8.1.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "glob": "^10.3.10",
     "hnswlib-node": "^1.3.0",
     "langchain": "^0.0.11",
     "node-fetch": "^3.2.6",
     "openai": "^3.1.0",
-    "pickle": "^0.2.0",
     "prompt-sync": "^4.2.0"
-  }
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conner1115/LangChain.js-LLM-Template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Conner1115/LangChain.js-LLM-Template/issues"
+  },
+  "homepage": "https://github.com/Conner1115/LangChain.js-LLM-Template#readme"
 }
