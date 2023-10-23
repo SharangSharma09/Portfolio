@@ -1,23 +1,128 @@
 <html>
   <head>
       <title>Miko Chat Bot</title>
-      <style>
-          .container {
-            margin: auto;
-            width: 50%;
-              
-          }
-          .queryBox.queryfield {
-              width: 50%;
-              float: left;
       
+      <style>
+            @font-face {
+                font-family: "LG";
+                font-style: normal;
+                src: url('LuckiestGuy.ttf');  
+            }
+
+             @font-face {
+              font-family: "Degular";
+              font-style: normal;
+              src: url('Degular_Display-Medium.ttf');
+            }   
+        
+            .h1{
+              font-family: "LG";
+              font-size: 64px;
+              letter-spacing: 0.05em;
+              margin: 40px 0px 0px 0px;
+              alignment-baseline:
+            }
+
+            .h2{
+              font-family: 'Degular';
+              font-size: 26px;
+              color: #F7931E;
+              letter-spacing: 0.05em;
+              margin: 0px 0px 10px 0px;
+            }
+
+            .p{
+              font-family: 'Degular';
+              font-size: 30px;
+              color: #000000;
+            }
+
+          
+            body {
+              
+              background-image: url('/background_repeat.png');
+              
+            }
+
+            .container .box .box-row{
+                display : flex;
+                flex-direction : row;
+                height:100vh;
+                
+                 
+            }
+
+            .container .box-cell-center {
+              display : flex;
+              flex-direction: column;
+              height:100vh;
+              
+              padding-left: 10%;
+              padding-top: 2%;
+              
+              
+              position: relative;
+              /*background-color: #cccccc;*/
+            }
+        
           .queryBox{
-            overflow: hidden; 
-            padding-right: .5em;
-           }
+              position:fixed;
+              bottom:0px;
+              /* left:0px; */
+          }
+
+          .overlayQueryBox{  
+            position: absolute;
+            width:80%;
+            height:50%;
+            top: 20%; 
+            left: 10%; 
+            display: flex;  /* Add this line */
+            justify-content: center; /* Add this line if you want contents to be horizontally centered */
+            align-items: center; /* Add this line if you want contents to be vertically centered */
+             
+          }
+
+          .overlayAnswerBox{  
+            position: relative;
+            left: 5%;
+            width: 400px;
+            top: -64%;
+            
+    
+          }
+        
+          .queryBox.queryfield {
+              width: 100%;
+              float: left;
+          }
+      
           .submit-name {
               clear: both;
           }
+
+
+        .input[type=text]{
+          width: 900px;
+          height: 90px;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 0px solid #ccc;
+          border-radius: 10px;
+          box-sizing: border-box;
+          font-family: 'Degular';
+          font-size: 30px;
+          color: #000000;
+        }
+
+        .submit{
+          width: 10%;
+          padding-left:20px;
+        }
+
+
+            
       </style>
   </head>
 <body>
@@ -25,19 +130,51 @@
 
   <form method='GET' action="/getquestion">
       <div class="container">
-          <div>
-          <h1>Miko Chat bot</h1>
-          </div>
-          <div class="answerBox">
-              <p>Miko: <%=miko_output%></p>
-          </div>
+        <div class="box">
+          <div class="box-row">
+            <div class="box-cell-left" style= "width: 10%;" >
+
+            </div>
+            
+            <div class="box-cell-center">
+
+                 <div class="titleBox" style= "padding-bottom: 5%;">
+                  <h1 class ="h1">Chat with Miko</h1>
+                  <h2 class ="h2">⚡powered by Chat GPT and Miko personality</h2>
+                 </div>
         
-          <div class="queryBox">
-              <label>You: </label>
-              <input type="text" id="queryfield" name="question" />
-              <input type="submit" id="submitButton" value="Send" />
+                 
+                  <div class="answerBox">
+                    <img src="/mikoChat.png" alt="Snow" style="width:900px;">
+                    <div class="overlayAnswerBox">
+                    <p class ="p">Miko: <%=miko_output%></p>
+                    </div>
+                    
+                  </div>
+                
+                  <div class="queryBox">
+                     <img src="/queryBox.png" alt="Snow" style="width:900px;">
+                     <div class="overlayQueryBox">
+                       <input type="text" id="queryfield" name="question" class="input"/>
+                       <!-- <input type="submit" id="submitButton" value="Send" class="submit" /> -->
+                       <input type="image" src="/Button_Submit.png" value="Submit" id="submitButton" class="submit">
+  
+                     </div>
+                      
+                  </div>
+            </div>
+    
+            <div class="box-cell-right" style= "width: 10%;">
+
+              <img src="/box-topLeft.png" alt="Snow" 
+                style="width:10%; position:fixed;
+                top:0px;
+                right:0px;">
+              
+
+            </div> 
           </div>
-        
+          </div>
       </div>
 
 

@@ -20,29 +20,34 @@ console.log(__dirname);
 //------------------------
 
 
+app.get("/", function (req, res) {
 
+  res.render('html', {
+    title: 'Miko Bot',
+    miko_output: 'Waiting for your question...'
+
+  })
+  console.log('Rendering1')
+
+});
 
 app.get("/getquestion", async (req, res)=>{
 
   var question = req.query.question;
 
   if (question != "") {
-
     const answer = await generateResponse({
       prompt: question,
       history: conversationHistory
-    });
+  });
 
-    //res.send("Miko: " + answer);
+  //res.send("miko_output" + answer);
 
     res.render('html', {
       title: 'Miko Bot',
       miko_output: answer
-
+  
     })
-
-
-
 
   } 
   
@@ -53,17 +58,7 @@ app.get("/getquestion", async (req, res)=>{
 
 
 
-app.get("/", async (req, res) => {
 
-
-  res.render('html', {
-    title: 'Miko Bot',
-    miko_output: 'Waiting for question...'
-
-  })
-  console.log('Rendering2')
-
-});
 
 //app.use("/assets", express.static('assets'));
 app.use(express.static('public'));
