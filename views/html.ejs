@@ -126,6 +126,8 @@
       </style>
   </head>
 <body>
+  
+  
   <form id="myForm">
       <div class="container">
         <div class="box">
@@ -145,7 +147,8 @@
                   <div class="answerBox">
                     <img src="/mikoChat.png" alt="Snow" style="width:900px;">
                     <div class="overlayAnswerBox">
-                    <p class ="p" id="answer">Miko: Waiting for your question...</p>
+                    <p class ="p" id="answer">Waiting for your question...</p>
+                    <img class= "loader" id="loaderAnimation" src="loader.gif" alt="Animated GIF">
                   </div>
                     
                   </div>
@@ -153,10 +156,11 @@
                   <div class="queryBox">
                      <img src="/queryBox.png" alt="Snow" style="width:900px;">
                      <div class="overlayQueryBox">
-                       <input type="text" id="queryfield" name="question" class="input"/>
+                      <input type="text" id="queryfield" name="question" class="input"/>
                        <!-- <input type="submit" id="submitButton" value="Send" class="submit" /> -->
+    
                        <input type="image" src="/Button_Submit.png" value="submit" id="submitButton" class="submit">
-  
+                       
                      </div>
                       
                   </div>
@@ -186,20 +190,34 @@
 </body>
 
   <script>
+
+       //Alter UI
+       const submitButton = document.getElementById("submitButton");
+       const answerText = document.getElementById("answer");
+       const loader = document.getElementById("loaderAnimation");
+       const inputfield = document.getElementById("queryfield");
+    
+    
+      //Hide LoaderAnimation during start
+      loader.style.display = "none";
+
+    
+      //Get user response, Fetch answer and insert into the Div 
       document.getElementById("myForm").addEventListener("submit", function(event) {
-  
       event.preventDefault(); // Prevent the default form submission
       event.stopPropagation();
 
-      var nameValue = document.getElementById("queryfield").value;
+      var nameValue = inputfield.value;
+        inputfield.value = ""; //clear the value in the div
+         console.log(nameValue)
+      
 
-      console.log(nameValue)
-
-      if(nameValue){
-
-        //Replace the button to pressed
-        //Hide div id=answer  
-        //Show Loader Div 
+      if(nameValue){ //If not null, empty 
+        
+          submitButton.src = "/Button_Submit_pressed.png"; 
+          answerText.style.display = "none";//Hide div id=answer
+          loader.style.display = "block";//Show Loader Div 
+        
 
       
         fetch("/ask?question=" + nameValue, {
@@ -214,9 +232,11 @@
                  document.getElementById("answer").innerHTML = response.answer
   
   
-                 //Replace the button to unpressed
-                 //Hide Loader Div 
-                 //Show div id=answer  
+                 //Alter UI
+                 submitButton.src = "/Button_Submit.png"; //Replace the button to unpressed
+                 answerText.style.display = "block";//Show div id=answer
+                 loader.style.display = "none";//Hide Loader Div 
+                 
                  
                }
         })
