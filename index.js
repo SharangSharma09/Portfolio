@@ -31,7 +31,7 @@ app.get("/", function (req, res) {
 
 });
 
-app.get("/getquestion", async (req, res)=>{
+app.get("/ask", async (req, res)=>{
 
   var question = req.query.question;
 
@@ -41,17 +41,16 @@ app.get("/getquestion", async (req, res)=>{
       history: conversationHistory
   });
 
-  //res.send("miko_output" + answer);
+    res.send({answer});
 
-    res.render('html', {
-      title: 'Miko Bot',
-      miko_output: answer
-  
-    })
+    // res.render('html', {
+    //   title: 'Miko Bot',
+    //   miko_output: answer
+   // })
 
   } 
   
-  else response.send("Please provide us first name");
+ // else response.send("Please provide us first name");
   
 
 });

@@ -126,9 +126,7 @@
       </style>
   </head>
 <body>
-  
-
-  <form method='GET' action="/getquestion">
+  <form id="myForm">
       <div class="container">
         <div class="box">
           <div class="box-row">
@@ -147,8 +145,8 @@
                   <div class="answerBox">
                     <img src="/mikoChat.png" alt="Snow" style="width:900px;">
                     <div class="overlayAnswerBox">
-                    <p class ="p">Miko: <%=miko_output%></p>
-                    </div>
+                    <p class ="p" id="answer">Miko: Waiting for your question...</p>
+                  </div>
                     
                   </div>
                 
@@ -157,7 +155,7 @@
                      <div class="overlayQueryBox">
                        <input type="text" id="queryfield" name="question" class="input"/>
                        <!-- <input type="submit" id="submitButton" value="Send" class="submit" /> -->
-                       <input type="image" src="/Button_Submit.png" value="Submit" id="submitButton" class="submit">
+                       <input type="image" src="/Button_Submit.png" value="submit" id="submitButton" class="submit">
   
                      </div>
                       
@@ -181,5 +179,57 @@
     
       </div>
   </form>
+  
+
+
+  
 </body>
+
+  <script>
+      document.getElementById("myForm").addEventListener("submit", function(event) {
+  
+      event.preventDefault(); // Prevent the default form submission
+      event.stopPropagation();
+
+      var nameValue = document.getElementById("queryfield").value;
+
+      console.log(nameValue)
+
+      if(nameValue){
+
+        //Replace the button to pressed
+        //Hide div id=answer  
+        //Show Loader Div 
+
+      
+        fetch("/ask?question=" + nameValue, {
+                   method: 'GET',
+                   headers: {
+                       'Accept': 'application/json',
+                   },
+               } )
+            .then(response => response.json())
+             .then(response => {
+               if(response && response.answer) {
+                 document.getElementById("answer").innerHTML = response.answer
+  
+  
+                 //Replace the button to unpressed
+                 //Hide Loader Div 
+                 //Show div id=answer  
+                 
+               }
+        })
+          
+        .catch(error => {
+              // Handle any errors that occurred during the fetch
+              console.error("Error: " + error);
+        });
+
+      } 
+        
+    });
+
+
+  </script>
 </html>
