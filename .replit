@@ -86,5 +86,5 @@ pattern = "**/{*.js,*.jsx,*.ts,*.tsx}"
 start = "typescript-language-server --stdio"
 
 [deployment]
-deploymentTarget = "static"
-publicDir = "MIko-chat-test"
+deploymentTarget = "cloudrun"
+run = ["sh", "-c", "node index.js"]

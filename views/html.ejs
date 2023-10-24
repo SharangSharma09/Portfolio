@@ -140,14 +140,14 @@
 
                  <div class="titleBox" style= "padding-bottom: 5%;">
                   <h1 class ="h1">Chat with Miko</h1>
-                  <h2 class ="h2">⚡powered by Chat GPT and Miko personality</h2>
+                  <h2 class ="h2">⚡ Miko's personality powered by Chat GPT</h2>
                  </div>
         
                  
                   <div class="answerBox">
                     <img src="/mikoChat.png" alt="Snow" style="width:900px;">
                     <div class="overlayAnswerBox">
-                    <p class ="p" id="answer">Waiting for your question...</p>
+                    <p class ="p" id="answer">Ask me something...</p>
                     <img class= "loader" id="loaderAnimation" src="loader.gif" alt="Animated GIF">
                   </div>
                     
@@ -200,6 +200,7 @@
     
       //Hide LoaderAnimation during start
       loader.style.display = "none";
+      //inputfield.value = " Ask Miko something...";
 
     
       //Get user response, Fetch answer and insert into the Div 
@@ -214,38 +215,39 @@
 
       if(nameValue){ //If not null, empty 
         
-          submitButton.src = "/Button_Submit_pressed.png"; 
-          answerText.style.display = "none";//Hide div id=answer
-          loader.style.display = "block";//Show Loader Div 
+        //Alter UI
+        submitButton.src = "/Button_Submit_pressed.png"; 
+        answerText.style.display = "none";//Hide div id=answer
+        loader.style.display = "block";//Show Loader Div 
         
 
-      
-        fetch("/ask?question=" + nameValue, {
-                   method: 'GET',
-                   headers: {
-                       'Accept': 'application/json',
-                   },
-               } )
-            .then(response => response.json())
-             .then(response => {
-               if(response && response.answer) {
-                 document.getElementById("answer").innerHTML = response.answer
+          //API -GET
+          fetch("/ask?question=" + nameValue, {
+                     method: 'GET',
+                     headers: {
+                         'Accept': 'application/json',
+                     },
+                 } )
+              .then(response => response.json())
+              .then(response => {
+                 if(response && response.answer) {
+                   document.getElementById("answer").innerHTML = response.answer
+    
+    
+                   //Alter UI
+                   submitButton.src = "/Button_Submit.png"; //Replace the button to unpressed
+                   answerText.style.display = "block";//Show div id=answer
+                   loader.style.display = "none";//Hide Loader Div 
+                   
+                   
+                 }
+          })
+            
+          .catch(error => {
+                // Handle any errors that occurred during the fetch
+                console.error("Error: " + error);
+          });
   
-  
-                 //Alter UI
-                 submitButton.src = "/Button_Submit.png"; //Replace the button to unpressed
-                 answerText.style.display = "block";//Show div id=answer
-                 loader.style.display = "none";//Hide Loader Div 
-                 
-                 
-               }
-        })
-          
-        .catch(error => {
-              // Handle any errors that occurred during the fetch
-              console.error("Error: " + error);
-        });
-
       } 
         
     });

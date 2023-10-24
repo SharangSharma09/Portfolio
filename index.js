@@ -16,7 +16,7 @@ const __dirname = dirname(__filename);
 //HTML EJS template
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-console.log(__dirname);
+//console.log(__dirname);
 //------------------------
 
 
@@ -27,7 +27,7 @@ app.get("/", function (req, res) {
     miko_output: 'Waiting for your question...'
 
   })
-  console.log('Rendering1')
+ // console.log('Rendering1')
 
 });
 
@@ -43,14 +43,8 @@ app.get("/ask", async (req, res)=>{
 
     res.send({answer});
 
-    // res.render('html', {
-    //   title: 'Miko Bot',
-    //   miko_output: answer
-   // })
-
   } 
   
- // else response.send("Please provide us first name");
   
 
 });
@@ -65,6 +59,6 @@ app.use(express.static('public'));
 
 
 // Starting a server
-app.listen(80, () => {
-  console.log("Server started on port 80");
+app.listen(3000, () => {
+  console.log("Server started on port 3000");
 });
