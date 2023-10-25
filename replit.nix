@@ -1,5 +1,6 @@
 { pkgs }: {
 	deps = [
+   pkgs.python39Packages.pip
 		pkgs.python39Packages.poetry
     pkgs.nodejs-18_x
     pkgs.python310Full
